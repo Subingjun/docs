@@ -1,17 +1,17 @@
 
 {% extends "base/base_layout.html" %}
 {% load static %}
- {% block sidebar_option %}
+{% block sidebar_option %}
       sidebar-collapse
 {% endblock %}
- {% block extra_css %}
+{% block extra_css %}
 <link href="{% static "adminlte/plugins/sweetalert2/sweetalert2.min.css" %}" rel="stylesheet">
 
 <style>
 #app_icon{
-        width: 64px;
-        height: 64px;
-    }
+    width: 64px;
+    height: 64px;
+}
 .selected {
     background-color: lightgreen !important;
 }
@@ -30,11 +30,11 @@
             <div class="col-lg-12">
             <div class="card">
               <div class="card-body">
-                
+
 
                  <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-rocket"></i> Recent Scans</h3>
+            <h3 class="box-title"><i class="fa fa-rocket"></i> 最近的扫描</h3>
         </div>
 
         <div class="box-body">
@@ -42,12 +42,12 @@
                 <table class="table table-bordered table-hover table-striped">
                     <thead>
                     <tr>
-                        <th>APP</th>
-                        <th>FILE</th>
-                        <th>TYPE</th>
-                        <th>HASH</th>
-                        <th>SCAN DATE</th>
-                        <th style="width: 9%">ACTIONS</th>
+                        <th>应用</th>
+                        <th>文件</th>
+                        <th>类型</th>
+                        <th>哈希</th>
+                        <th>扫描日期</th>
+                        <th style="width: 9%">操作</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,18 +62,18 @@
                                   {% if e.FILE_NAME|slice:"-5:" != '.appx' %}
                                     {% if e.FILE_NAME|slice:"-3:" != '.so' %}
                                       {% if e.FILE_NAME|slice:"-2:" != '.a' %}
-                                    <p> <a href="{% url "appsec_dashboard" checksum=e.MD5 %}" class="btn btn-sm btn-outline-primary" role="button"><i class="fas fa-user-shield"></i> MobSF Scorecard</a></p>
+                                    <p> <a href="{% url "appsec_dashboard" checksum=e.MD5 %}" class="btn btn-sm btn-outline-primary" role="button"><i class="fas fa-user-shield"></i> MobSF 评分卡</a></p>
                                       {% endif %}
                                     {% endif %}
                                     {% endif %}
                                   {% endif %}
-                                  <p><a class="btn btn-primary btn-sm" href="../{{ e.ANALYZER }}/{{e.MD5}}/"><i class="fas fa-eye"></i> Static Report</a>
+                                  <p><a class="btn btn-primary btn-sm" href="../{{ e.ANALYZER }}/{{e.MD5}}/"><i class="fas fa-eye"></i> 静态报告</a>
                                   {% if '.apk' == e.FILE_NAME|slice:"-4:" or '.xapk' == e.FILE_NAME|slice:"-5:" or '.apks' == e.FILE_NAME|slice:"-5:"%}
-                                    <a  class="btn btn-success btn-sm {% if not e.DYNAMIC_REPORT_EXISTS %}disabled{% endif %}" href="{% url "dynamic_report" checksum=e.MD5 %}"><i class="fa fa-mobile"></i> Dynamic Report</a>
+                                    <a  class="btn btn-success btn-sm {% if not e.DYNAMIC_REPORT_EXISTS %}disabled{% endif %}" href="{% url "dynamic_report" checksum=e.MD5 %}"><i class="fa fa-mobile"></i> 动态报告</a>
                                   {% endif %}
                                   </p>
                                 {% else %}
-                                </br><span class="badge bg-warning">scan not completed</span>
+                                </br><span class="badge bg-warning">扫描未完成</span>
                                 {% endif %}
                             </td>
                             <td>{{ e.FILE_NAME }}
@@ -99,10 +99,10 @@
                                    <a class="btn btn-outline-info btn-sm" href="../{{ e.ANALYZER }}/{{e.MD5}}/?rescan=1"><i class="fas fa-sync-alt"></i></a>
                                 </p>
                             {% if '.apk' == e.FILE_NAME|slice:"-4:" or '.xapk' == e.FILE_NAME|slice:"-5:" or '.apks' == e.FILE_NAME|slice:"-5:"%}
-                                <p><a class="diffButton btn btn-warning btn-sm" id="{{ e.MD5 }}_{{ e.FILE_NAME }}"><i class="fas fa-not-equal"></i> Diff or Compare</a>
+                                <p><a class="diffButton btn btn-warning btn-sm" id="{{ e.MD5 }}_{{ e.FILE_NAME }}"><i class="fas fa-not-equal"></i> 差异或比较</a>
                                 </p>
                             {% endif %}
-                            <p> <a class="btn btn-danger btn-sm" id="{{ e.MD5 }}" onclick="delete_scan(this)" href="#"><i class="fa fa-trash"></i> Delete Scan</a> </p>
+                            <p> <a class="btn btn-danger btn-sm" id="{{ e.MD5 }}" onclick="delete_scan(this)" href="#"><i class="fa fa-trash"></i> 删除扫描</a> </p>
                             </td>
                         </tr>
                     {% endfor %}
@@ -125,11 +125,11 @@
 {% block extra_scripts %}
 <script src="{% static "adminlte/plugins/sweetalert2/sweetalert2.min.js" %}"></script>
 <script>
-    // Diff functions
+    // 差异功能
     var diff_first_md5 = '';
     var diff_first_name = '';
 
-    // When a row is clicked, we check if we already have first scan, if so, ask for confirmation
+    // 单击行时，检查是否已经有第一个扫描，如果有，则请求确认
     function enable_partner_select() {
         $('table tr').on('click', function (e) {
             e.preventDefault();
@@ -139,7 +139,6 @@
             diff_confirmation($(this));
         })
     }
-
 
     function enable_diff_button(){
         $(".diffButton").on('click', function(e){
@@ -152,13 +151,12 @@
         $('.diffButton').off('click');
     }
 
-    // First pop up only saves the first scan to diff and tells the user to select a partner
+    // 第一个弹窗仅将第一个扫描保存为差异，并告诉用户选择第二个扫描
     function diff_select(item) {
-
         Swal.fire({
-            title: '<strong>Select App to Compare</strong>',
+            title: '<strong>选择要比较的应用</strong>',
             type: 'info',
-            text: 'Please select the second scan result for comparison',
+            text: '请选择要进行比较的第二个扫描结果',
             timer: 10000
         });
         diff_first_md5 = item.attr('id').slice(0, 32);
@@ -166,7 +164,7 @@
         item.closest("tr").addClass("selected");
         item.closest("tbody").addClass("selectable_table");
 
-        // Enable the second partner selection
+        // 启用第二个选择
         enable_partner_select();
         disable_diff_button();
     }
@@ -180,9 +178,9 @@
         enable_diff_button();
     }
 
-    // Here we get jquery row
+    // 在这里，我们获取jquery行
     function diff_confirmation(item) {
-        // First we need the id which has the md5 and name
+        // 首先我们需要具有md5和名称的id
         rows_tds = item.find('td');
         selected_md5 = rows_tds[3].innerText;
         if (diff_first_md5 == selected_md5) {
@@ -192,15 +190,15 @@
         diff_second_name = rows_tds[1].innerText;
 
         Swal.fire({
-            title: '<strong>Diff confirmation</strong>',
+            title: '<strong>差异确认</strong>',
             type: 'info',
             html:
-                '<strong>Do you want to diff - </strong><br />' + diff_first_name +
-                '<br /> <strong>with - <br /> </strong>' + diff_second_name + ' <br /> <strong>?</strong>',
+                '<strong>您是否想要比较 - </strong><br />' + diff_first_name +
+                '<br /> <strong>与 - <br /> </strong>' + diff_second_name + ' <br /> <strong>？</strong>',
 
             showCancelButton: true,
-            cancelButtonText: 'Cancel',
-            confirmButtonText: 'Start Diffing!',
+            cancelButtonText: '取消',
+            confirmButtonText: '开始比较！',
         }).then((result) => {
             if (result.value) {
                 window.location = '/compare/' + diff_first_md5 + '/' + diff_second_md5 + '/';
@@ -212,12 +210,12 @@
 
     function delete_scan(item){
       Swal.fire({
-      title: 'Are you sure?',
-      text: "This will permanently remove the scan results from MobSF",
+      title: '您确定吗？',
+      text: "这将永久删除MobSF中的扫描结果",
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
+      confirmButtonText: '是的',
+      cancelButtonText: '不',
       confirmButtonColor: '#d33',
       cancelButtonColor: '#2da532',
     }).then((result) => {
@@ -234,8 +232,8 @@
                             success : function(json) {
                                 if (json.deleted==='yes'){
                                     Swal.fire(
-                                        'Deleted!',
-                                        'The scan result is deleted!',
+                                        '已删除！',
+                                        '扫描结果已删除！',
                                         'success'
                                     ).then(function () {
                                         location.reload();
@@ -243,27 +241,27 @@
                                 }
                                 else {
                                     Swal.fire(
-                                    'Delete Failed',
-                                    'Cannot delete the scan result!',
+                                    '删除失败',
+                                    '无法删除扫描结果！',
                                     'error'
                                     )
                                 }
                             },
                             error : function(xhr,errmsg,err) {
                                 Swal.fire(
-                                    'Delete Failed',
+                                    '删除失败',
                                     errmsg,
                                     'error'
                                     )
                             }
                 });
-               
+
         } else {
                 diff_cleanup();
         }
         });
 }
-    
+
 
 enable_diff_button();
 

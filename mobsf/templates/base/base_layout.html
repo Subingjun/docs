@@ -38,19 +38,19 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'recent' %}" class="nav-link">RECENT SCANS</a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'home' %}" class="nav-link">STATIC ANALYZER</a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'dynamic' %}" class="nav-link">DYNAMIC ANALYZER</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'recent' %}" class="nav-link">最近的扫描</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'home' %}" class="nav-link">静态分析器</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'dynamic' %}" class="nav-link">动态分析器</a></li>
         <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'api_docs' %}" class="nav-link">REST API</a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'donate' %}" class="nav-link">DONATE ♥</a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a target="_blank" href="https://mobsf.github.io/docs/#/" class="nav-link">DOCS</a></li>
-        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'about' %}" class="nav-link">ABOUT</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'donate' %}" class="nav-link">捐赠 ♥</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a target="_blank" href="https://mobsf.github.io/docs/#/" class="nav-link">文档</a></li>
+        <li class="nav-item d-none d-sm-inline-block"><a href="{% url 'about' %}" class="nav-link">关于</a></li>
     </ul>
 
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3" action="/search" method="GET">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" id="navbar-search-input" type="search" placeholder="Search MD5" name="md5" aria-label="Search">
+        <input class="form-control form-control-navbar" id="navbar-search-input" type="search" placeholder="搜索 MD5" name="md5" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
@@ -83,9 +83,9 @@
 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>© {% now "Y" %} Mobile Security Framework - MobSF | <a href="https://ajinabraham.com">Ajin Abraham</a> | <a href="https://opensecurity.in">OpenSecurity</a>.</strong>
+    <strong>© {% now "Y" %} 移动安全框架 - MobSF | <a href="https://ajinabraham.com">Ajin Abraham</a> | <a href="https://opensecurity.in">OpenSecurity</a>.</strong>
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> {{ version }}
+      <b>版本</b> {{ version }}
     </div>
   </footer>
 

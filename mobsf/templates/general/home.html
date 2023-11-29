@@ -1,14 +1,14 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_cn">
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="Mobile Security Framework (MobSF) is an automated, all-in-one mobile application (Android/iOS/Windows) pen-testing, malware analysis and security assessment framework capable of performing static and dynamic analysis.">
+      <meta name="description" content="移动安全框架（MobSF）是一个自动化的、一体化的移动应用（Android/iOS/Windows）渗透测试、恶意软件分析和安全评估框架，具有进行静态和动态分析的能力。">
       <meta name="author" content="Ajin Abraham">
       <link rel="icon" href="{% static "img/favicon.ico" %}">
-      <title>Mobile Security Framework - MobSF</title>
+      <title>移动 Security Framework - MobSF</title>
       <link rel="stylesheet" href="{% static "adminlte/dashboard/css/adminlte.min.css" %}">
       <link rel="stylesheet" href="{% static "adminlte/plugins/fontawesome-free/css/all.min.css" %}">
       <link rel="stylesheet" href="{% static "others/css/spinner.css" %}">
@@ -29,10 +29,10 @@
             <div class="navbar-collapse collapse" id="collapsingNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'recent' %}">RECENT</a>
+                        <a class="nav-link" href="{% url 'recent' %}">最近</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'dynamic' %}">DYNAMIC ANALYZER</a>
+                        <a class="nav-link" href="{% url 'dynamic' %}">动态分析</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'api_docs' %}">REST API</a>
@@ -40,15 +40,15 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="https://mobsf.github.io/docs/#/">DOCS</a>
+                        <a class="nav-link" target="_blank" href="https://mobsf.github.io/docs/#/">文档</a>
                     </li>
                     <li class="nav-item">
-                        <a  class="nav-link" href="{% url 'about' %}">ABOUT</a>
+                        <a  class="nav-link" href="{% url 'about' %}">关于</a>
                     </li>
                     <li class="nav-item">
                         <a>
                         <form action="/search" method="GET">
-                            <input name="md5" type="text" class="form-control" placeholder="Search MD5">
+                            <input name="md5" type="text" class="form-control" placeholder="搜索 MD5">
                         </form>
                         </a>
                     </li>
@@ -66,32 +66,32 @@
                </div>
                <div class="inner cover">
                   <div style="visibility:hidden; opacity:0" id="drop">
-                     <div id="textnode">Drop anywhere!</div>
+                     <div id="textnode">拖拽文件到任意处</div>
                   </div>
                   </br>
                   <form id="upload_form" enctype="multipart/form-data" method="post">
                      {% csrf_token %}
                      <div class="fileUpload btn btn-default btn-lg" id="but">
-                        <input type="file" name="file" id="uploadFile" placeholder="Choose File" multiple>
+                        <input type="file" name="file" id="uploadFile" placeholder="选择文件" multiple>
                         <span class="fas fa-cloud-upload-alt"></span>
-                        Upload &amp; Analyze
+                        上传 &amp; 分析
                      </div>
                      <br />
-                     <small><i>Drag &amp; Drop anywhere!</i></small>
+                     <small><i>拖拽文件到任意处</i></small>
                      <h5 id="status"></h5>
                      <progress id="progressBar" value="0" max="100" style="width:300px;visibility:hidden;" ></progress>
                   </form>
                </div>
                <div class="mastfoot">
                 
-                  <input type="download" id="package" class="form-control" placeholder="Download & Scan by package name"/>
+                  <input type="download" id="package" class="form-control" placeholder="通过包名下载并扫描"/>
 
 
                   <div class="inner">
-                     <h6> <a href="{% url 'recent' %}">RECENT SCANS</a>  |  <a href="{% url 'dynamic' %}">DYNAMIC ANALYZER</a>  |  <a href="{% url 'api_docs' %}">REST API</a>   |  <a href="{% url 'donate' %}">DONATE ♥</a> |  <a target="_blank"
-                         href="https://mobsf.github.io/docs/#/">DOCS</a>  | <a href="{% url 'about' %}">ABOUT</a></h6>
+                     <h6> <a href="{% url 'recent' %}">最近的扫描</a>  |  <a href="{% url 'dynamic' %}">动态分析器</a>  |  <a href="{% url 'api_docs' %}">REST API</a>   |  <a href="{% url 'donate' %}">捐赠 ♥</a> |  <a target="_blank"
+                         href="https://mobsf.github.io/docs/#/">文档</a>  | <a href="{% url 'about' %}">关于</a></h6>
                      </br>
-                     <p>&copy; {% now "Y" %}  Mobile Security Framework - MobSF {{ version }}</p>
+                     <p>&copy; {% now "Y" %}  移动安全框架 - MobSF {{ version }}</p>
                   </div>
                </div>
             </div>
