@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.css' %}">
+    <title>Title</title>
+  <style>
+    .account{
+        width:500px;
+        border:1px solid #dddddd;
+        height:500px;
+
+        box-shadow:5px 5px 5px #abc;
+
+        margin-left:auto;
+        margin-right:auto;
+        margin-top:100px;
+        padding:25px 40px;
+    }
+    .account h1{
+    margin-top:10px;
+    margin-bottom:30px;
+    text-align:center;
+    }
+
+    .btn{
+
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div class="account">
+
+<h1>
+  {{ title }}
+</h1>
+
+   <form method="post" >
+          {% csrf_token %}
+  <div class="form-group">
+    <label for="username">用户名</label>
+    {{ form.username }}
+  </div>
+  <div class="form-group">
+    <label for="password">密码</label>
+    {{ form.password }}
+  </div>
+  <div class="form-group">
+    <label for="confirm_password">确认密码</label>
+    {{ form.confirm_password }}
+  </div>
+       <span style="color: #b92c28;text-align: center;color: #b92c28;">{{ error }}</span>
+
+          <div style="text-align: center;" class="margin-top:10px;">
+               <button style="float: left" type="submit" class="btn btn-primary btn-lg">注册</button>
+               <a style="float: right" href="#"  class="btn btn-primary btn-lg">返回</a>
+          </div>
+
+        </form>
+</div>
+
+</body>
